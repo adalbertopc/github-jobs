@@ -24,6 +24,12 @@ const dataFetchReducer = (state, action) => {
 				isLoading: false,
 				isError: false,
 			};
+		case types.FETCH_ERROR:
+			return {
+				state: [],
+				isLoading: false,
+				isError: true,
+			};
 		default:
 			return state;
 	}

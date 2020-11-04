@@ -7,6 +7,7 @@ const JobsListStyled = styled.main`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 50px 10px;
+	margin-top: 50px;
 `;
 
 export const JobsList = () => {
@@ -23,9 +24,13 @@ export const JobsList = () => {
 				<h1>Loading</h1>
 			) : (
 				<JobsListStyled>
-					{data.map((job) => (
-						<JobListItem key={job.id} job={job} />
-					))}
+					{data ? (
+						data.map((job) => (
+							<JobListItem key={job.id} job={job} />
+						))
+					) : (
+						<h1>No Hay nada</h1>
+					)}
 				</JobsListStyled>
 			)}
 		</>

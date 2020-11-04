@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { SearchBar } from '../../components/SearchBar';
 import { JobsList } from './components/JobsList';
 
 export const HomeScreen = () => {
 	return (
 		<div>
-			<h1>Jobs</h1>
+			<SearchBar />
 			<JobsList />
 		</div>
 	);

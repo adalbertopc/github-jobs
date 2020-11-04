@@ -87,7 +87,11 @@ export const JobListItem = ({ job }) => {
 						  )}d ago  `}
 					• {type}
 				</span>
-				<TitleStyled to={`/jobs/${id}`}>{title}</TitleStyled>
+				<TitleStyled
+					to={{ pathname: `/job/${id}`, jobInfo: { ...job } }}
+				>
+					{title}
+				</TitleStyled>
 				<p className='company'>{company}</p>
 				<p className='location'>{location}</p>
 			</InfoContainer>
