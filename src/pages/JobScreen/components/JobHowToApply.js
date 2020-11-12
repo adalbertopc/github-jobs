@@ -15,5 +15,11 @@ const HowToApplyStyled = styled.div`
 	}
 `;
 export const JobHowToApply = ({ how_to_apply }) => {
-	return <HowToApplyStyled>{parse(how_to_apply)}</HowToApplyStyled>;
+	return (
+		<>
+			{how_to_apply && (
+				<HowToApplyStyled>{parse(how_to_apply)}</HowToApplyStyled>
+			)}
+		</>
+	);
 };

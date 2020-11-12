@@ -11,8 +11,7 @@ const JobsListStyled = styled.main`
 `;
 
 export const JobsList = () => {
-	const [state, setUrl] = useDataApi();
-	const { data, isLoading, isError } = state;
+	const { data, isLoading, isError } = useDataApi();
 
 	return (
 		<>

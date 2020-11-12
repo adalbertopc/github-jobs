@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useReducer, useEffect, useState } from 'react';
+import { useReducer, useEffect, useRef } from 'react';
 
 const types = {
 	FETCH_GET: 'FETCH_GET',
@@ -35,9 +35,8 @@ const dataFetchReducer = (state, action) => {
 	}
 };
 
-export const useDataApi = (initialUrl = BASE_URL) => {
-	const [url, setUrl] = useState(initialUrl);
-
+export const useDataApi = (url = BASE_URL) => {
+	const cache = useRef({});
 	const [state, dispatch] = useReducer(dataFetchReducer, {
 		isLoading: false,
 		isError: false,
@@ -45,21 +44,27 @@ export const useDataApi = (initialUrl = BASE_URL) => {
 	});
 
 	useEffect(() => {
+		if (!url) return;
 		const fetchData = async () => {
 			dispatch({ type: types.FETCH_GET });
-			try {
-				const response = await axios.get(url);
-				console.log('response:', response);
-				dispatch({
-					type: types.FETCH_SUCCESS,
-					payload: response.data,
-				});
-			} catch (e) {
-				dispatch({ type: types.FETCH_ERROR });
+			if (cache.current[url]) {
+				const data = cache.current[url];
+				dispatch({ type: types.FETCH_SUCCESS, payload: data });
+			} else {
+				try {
+					const response = await axios.get(url);
+					cache.current[url] = response.data;
+					dispatch({
+						type: types.FETCH_SUCCESS,
+						payload: response.data,
+					});
+				} catch (e) {
+					dispatch({ type: types.FETCH_ERROR });
+				}
 			}
 		};
 		fetchData();
 	}, [url]);
 
-	return [state, setUrl];
+	return state;
 };

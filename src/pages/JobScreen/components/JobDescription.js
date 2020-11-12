@@ -17,5 +17,11 @@ export const JobDescription = ({
 	title,
 	type,
 }) => {
-	return <ArticleStyled>{parse(description)}</ArticleStyled>;
+	return (
+		<>
+			{description && (
+				<ArticleStyled>{parse(description)}</ArticleStyled>
+			)}
+		</>
+	);
 };
