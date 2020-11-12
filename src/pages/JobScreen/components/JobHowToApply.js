@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import parse from 'html-react-parser';
 
 const HowToApplyStyled = styled.div`
-	margin-top: 20px;
-	background: blue;
+	margin: 20px 0;
+	background: #2b2d42;
 	color: #fff;
 	padding: 30px 50px;
 	border-radius: 7px;
-
 	a {
 		color: #fff;
+		text-decoration: none;
+		font-weight: 600;
 	}
 `;
 export const JobHowToApply = ({ how_to_apply }) => {

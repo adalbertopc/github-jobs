@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CustomButton } from '../../../components/styled/CustomButton';
 
 const CompanyInfoStyled = styled.div`
 	width: 100%;
@@ -43,7 +42,25 @@ const CompanyInfoStyled = styled.div`
 		}
 	}
 `;
+const CustomButtonHref = styled.a`
+	background: #d90429;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.8rem;
+	font-weight: 700;
+	padding: 15px 20px;
+	opacity: 0.9;
+	outline: none;
+	text-decoration: none;
+	transition: 0.2s ease-in-out;
 
+	:hover {
+		opacity: 1;
+	}
+`;
 export const JobCompanyInfo = ({ company_img, company, company_url }) => {
 	return (
 		<CompanyInfoStyled>
@@ -55,7 +72,13 @@ export const JobCompanyInfo = ({ company_img, company, company_url }) => {
 					<h3>{company}</h3>
 					<span>{company_url}</span>
 				</div>
-				<CustomButton>Company Site</CustomButton>
+				<CustomButtonHref
+					color='#ef233c'
+					href={company_url}
+					target='_blank'
+				>
+					Company Site
+				</CustomButtonHref>
 			</div>
 		</CompanyInfoStyled>
 	);

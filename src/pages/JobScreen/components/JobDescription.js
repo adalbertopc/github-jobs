@@ -7,6 +7,7 @@ const ArticleStyled = styled.article`
 	margin-top: 20px;
 	border-radius: 5px;
 	padding: 30px 50px;
+	line-height: 2rem;
 `;
 
 export const JobDescription = ({

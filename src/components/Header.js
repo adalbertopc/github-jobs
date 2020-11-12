@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Wrapper } from './styled/Wrapper';
 const HeaderStyled = styled.header`
 	height: 100px;
-	background: #6666ff;
+	background: #2b2d42;
 	border-radius: 0 0 0 65px;
 	padding-top: 10px;
 `;

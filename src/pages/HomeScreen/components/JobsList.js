@@ -5,7 +5,7 @@ import { useDataApi } from '../../../hooks/useDataApi';
 
 const JobsListStyled = styled.main`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: repeat(3, minmax(100px, 1fr));
 	grid-gap: 50px 10px;
 	margin-top: 50px;
 `;
@@ -13,10 +13,6 @@ const JobsListStyled = styled.main`
 export const JobsList = () => {
 	const [state, setUrl] = useDataApi();
 	const { data, isLoading, isError } = state;
-
-	useEffect(() => {
-		console.log('data cambio');
-	}, [state]);
 
 	return (
 		<>

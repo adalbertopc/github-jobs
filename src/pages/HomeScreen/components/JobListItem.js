@@ -13,7 +13,7 @@ const JobStyled = styled.div`
 const TitleStyled = styled(Link)`
 	text-decoration: none;
 	font-size: 1.2rem;
-	font-weight: 600;
+	font-weight: 700;
 	color: #000;
 `;
 const ImageContainer = styled.div`
@@ -42,13 +42,13 @@ const InfoContainer = styled.div`
 	margin-top: 45px;
 
 	span {
-		color: #d2d2d2;
+		color: #8d99ae;
 		font-size: 0.8rem;
 		margin-bottom: 10px;
 	}
 
 	.company {
-		color: #d2d2d2;
+		color: #8d99ae;
 		font-size: 0.9rem;
 	}
 	.location {
