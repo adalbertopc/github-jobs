@@ -36,7 +36,6 @@ const dataFetchReducer = (state, action) => {
 };
 
 export const useDataApi = (url = BASE_URL) => {
-	const cache = useRef({});
 	const [state, dispatch] = useReducer(dataFetchReducer, {
 		isLoading: false,
 		isError: false,
@@ -44,23 +43,18 @@ export const useDataApi = (url = BASE_URL) => {
 	});
 
 	useEffect(() => {
-		if (!url) return;
 		const fetchData = async () => {
 			dispatch({ type: types.FETCH_GET });
-			if (cache.current[url]) {
-				const data = cache.current[url];
-				dispatch({ type: types.FETCH_SUCCESS, payload: data });
-			} else {
-				try {
-					const response = await axios.get(url);
-					cache.current[url] = response.data;
-					dispatch({
-						type: types.FETCH_SUCCESS,
-						payload: response.data,
-					});
-				} catch (e) {
-					dispatch({ type: types.FETCH_ERROR });
-				}
+
+			try {
+				const response = await axios.get(url);
+
+				dispatch({
+					type: types.FETCH_SUCCESS,
+					payload: response.data,
+				});
+			} catch (e) {
+				dispatch({ type: types.FETCH_ERROR });
 			}
 		};
 		fetchData();
