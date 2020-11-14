@@ -51,9 +51,9 @@ const CustomButtonHref = styled.a`
 	display: inline-block;
 	font-size: 0.8rem;
 	font-weight: 700;
-	padding: 15px 20px;
 	opacity: 0.9;
 	outline: none;
+	padding: 15px 20px;
 	text-decoration: none;
 	transition: 0.2s ease-in-out;
 

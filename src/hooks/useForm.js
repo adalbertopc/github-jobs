@@ -10,7 +10,10 @@ export const useForm = (initialState = {}) => {
 	const handleInputChanges = ({ target }) => {
 		setValues({
 			...values,
-			[target.name]: target.value,
+			[target.name]:
+				target.value === 'on' || target.value === 'off'
+					? target.checked
+					: target.value,
 		});
 	};
 

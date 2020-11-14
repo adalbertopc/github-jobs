@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { JobListItem } from './JobListItem';
 import styled from 'styled-components';
 import { useDataApi } from '../../../hooks/useDataApi';
+import { getURLWithParams } from '../../../helpers/getUrlWithParams';
 
 const JobsListStyled = styled.main`
 	display: grid;
@@ -10,21 +11,22 @@ const JobsListStyled = styled.main`
 	margin-top: 50px;
 `;
 
-export const JobsList = () => {
-	const { data, isLoading, isError } = useDataApi();
-
+export const JobsList = ({ queryParams }) => {
+	const { description, location, full_time } = queryParams;
+	const url = getURLWithParams(description, location, full_time);
+	const { data, isLoading, isError } = useDataApi(url);
 	return (
 		<>
 			{isLoading ? (
 				<h1>Loading</h1>
 			) : (
 				<JobsListStyled>
-					{data ? (
+					{data && data.length !== 0 ? (
 						data.map((job) => (
 							<JobListItem key={job.id} job={job} />
 						))
 					) : (
-						<h1>No Hay nada</h1>
+						<h1>No se encontraron resultados</h1>
 					)}
 				</JobsListStyled>
 			)}

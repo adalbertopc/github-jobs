@@ -17,11 +17,16 @@ const SearchFieldStyled = styled.div`
 	}
 `;
 
-export const SearchField = ({ placeholder, Ico, handleChange }) => {
+export const SearchField = ({ placeholder, Ico, handleChange, name }) => {
 	return (
 		<SearchFieldStyled>
 			<Ico />
-			<CustomInput onChange={handleChange} placeholder={placeholder} />
+			<CustomInput
+				onChange={handleChange}
+				placeholder={placeholder}
+				name={name}
+				autoComplete='off'
+			/>
 		</SearchFieldStyled>
 	);
 };

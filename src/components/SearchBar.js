@@ -3,28 +3,48 @@ import { SearchField } from './SearchField';
 import { BsSearch, BsGeoAlt } from 'react-icons/bs';
 
 import styled from 'styled-components';
+import { CustomButton } from './styled/CustomButton';
+import { useForm } from '../hooks/useForm';
+import { CheckBox } from './CheckBox';
 
 const SearchBarStyled = styled.div`
-	background: #fff;
-	padding: 20px;
-	border-radius: 5px;
-	display: grid;
-	grid-template-columns: 1.5fr 1fr 1fr;
-	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.15);
-	margin-top: -30px;
+	form {
+		background: #fff;
+		padding: 20px;
+		border-radius: 5px;
+		display: grid;
+		align-items: center;
+		grid-template-columns: repeat(4, 1fr);
+		box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.15);
+		margin-top: -30px;
+	}
 `;
 
-export const SearchBar = () => {
+export const SearchBar = ({ handleSearch }) => {
+	const [values, handleInputChanges, reset] = useForm();
+
 	return (
 		<SearchBarStyled>
-			<SearchField
-				Ico={BsSearch}
-				placeholder='Filter by title, companies, expertise...'
-			/>
-			<SearchField
-				Ico={BsGeoAlt}
-				placeholder='Filter by location...'
-			/>
+			<form onSubmit={(e) => handleSearch(e, values)}>
+				<SearchField
+					Ico={BsSearch}
+					placeholder='Filter by title, companies, expertise...'
+					handleChange={handleInputChanges}
+					name='description'
+				/>
+				<SearchField
+					Ico={BsGeoAlt}
+					placeholder='Filter by location...'
+					handleChange={handleInputChanges}
+					name='location'
+				/>
+				<CheckBox
+					label='Full time'
+					name='full_time'
+					handleChange={handleInputChanges}
+				/>
+				<CustomButton>Search</CustomButton>
+			</form>
 		</SearchBarStyled>
 	);
 };

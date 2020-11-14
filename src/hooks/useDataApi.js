@@ -1,17 +1,12 @@
 import axios from 'axios';
-import { useReducer, useEffect, useRef } from 'react';
+import { useReducer, useEffect } from 'react';
+import { getUrlWithCors } from '../helpers/getUrlWithCors';
 
 const types = {
 	FETCH_GET: 'FETCH_GET',
 	FETCH_SUCCESS: 'FETCH_SUCCESS',
 	FETCH_ERROR: 'FETCH_ERROR',
 };
-
-// const BASE_URL = 'https://github-jobs-proxy.appspot.com/positions.json';
-const URL_RAW = 'https://jobs.github.com/positions.json?page=1';
-const BASE_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-	URL_RAW
-)}`;
 
 const dataFetchReducer = (state, action) => {
 	switch (action.type) {
@@ -35,20 +30,19 @@ const dataFetchReducer = (state, action) => {
 	}
 };
 
-export const useDataApi = (url = BASE_URL) => {
+export const useDataApi = (url) => {
 	const [state, dispatch] = useReducer(dataFetchReducer, {
 		isLoading: false,
 		isError: false,
 		data: [],
 	});
 
+	const URL_WITH_CORS = getUrlWithCors(url);
 	useEffect(() => {
 		const fetchData = async () => {
 			dispatch({ type: types.FETCH_GET });
-
 			try {
-				const response = await axios.get(url);
-
+				const response = await axios.get(URL_WITH_CORS);
 				dispatch({
 					type: types.FETCH_SUCCESS,
 					payload: response.data,
@@ -58,7 +52,7 @@ export const useDataApi = (url = BASE_URL) => {
 			}
 		};
 		fetchData();
-	}, [url]);
+	}, [URL_WITH_CORS]);
 
 	return state;
 };

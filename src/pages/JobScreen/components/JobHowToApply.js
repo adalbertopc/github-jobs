@@ -8,6 +8,7 @@ const HowToApplyStyled = styled.div`
 	color: #fff;
 	padding: 30px 50px;
 	border-radius: 7px;
+	line-height: 2rem;
 	a {
 		color: #fff;
 		text-decoration: none;

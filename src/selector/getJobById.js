@@ -1,1 +1,0 @@
-export const getJobById = (id) => {};
