@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 const HowToApplyStyled = styled.div`
 	margin: 20px 0;
-	background: #2b2d42;
+	background: ${({ theme }) => theme.jobApply};
 	color: #fff;
 	padding: 30px 50px;
 	border-radius: 7px;

@@ -5,7 +5,7 @@ const CompanyInfoStyled = styled.div`
 	width: 100%;
 	height: 125px;
 	margin-top: -30px;
-	background: #fff;
+	background: ${({ theme }) => theme.jobCard};
 	border-radius: 5px;
 	display: flex;
 	overflow: hidden;

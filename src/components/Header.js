@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { CheckBox } from './styled/CheckBox';
 import { Wrapper } from './styled/Wrapper';
 const HeaderStyled = styled.header`
 	height: 100px;
-	background: #2b2d42;
+	background: ${({ theme }) => theme.header};
 	border-radius: 0 0 0 65px;
 	padding-top: 10px;
 `;
@@ -23,13 +24,17 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 export const Header = () => {
+	const { dispatch } = useContext(ThemeContext);
+	const handleChange = () => {
+		dispatch({ type: 'TOGGLE_DARK_MODE' });
+	};
 	return (
 		<HeaderStyled>
 			<WrapperStyled className='wrapper'>
 				<NavLinkStyled className='.pageLogo' to='/'>
 					devjobs
 				</NavLinkStyled>
-				<p>Dark Theme</p>
+				<CheckBox label='Dark theme' handleChange={handleChange} />
 			</WrapperStyled>
 		</HeaderStyled>
 	);

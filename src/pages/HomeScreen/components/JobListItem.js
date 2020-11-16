@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { getJobDate } from '../../../helpers/getJobDate';
 
 const JobStyled = styled.div`
-	background: #fff;
+	background: ${({ theme }) => theme.jobCard};
 	border-radius: 7px;
 	padding: 10px 30px;
 	position: relative;
@@ -14,7 +15,7 @@ const TitleStyled = styled(Link)`
 	text-decoration: none;
 	font-size: 1.2rem;
 	font-weight: 700;
-	color: #000;
+	color: ${({ theme }) => theme.text};
 `;
 const ImageContainer = styled.div`
 	display: flex;
@@ -54,7 +55,7 @@ const InfoContainer = styled.div`
 	.location {
 		font-weight: 600;
 		font-size: 0.6rem;
-		color: blue;
+		color: ${({ theme }) => theme.header};
 	}
 `;
 
@@ -69,10 +70,6 @@ export const JobListItem = ({ job }) => {
 		company_logo,
 	} = job;
 
-	const date1 = new Date(created_at);
-	const date2 = new Date();
-	const diffTime = Math.abs(date2 - date1);
-	const timeAgo = Math.ceil(diffTime / (1000 * 60 * 60));
 	return (
 		<JobStyled>
 			<ImageContainer>
@@ -80,12 +77,7 @@ export const JobListItem = ({ job }) => {
 			</ImageContainer>
 			<InfoContainer>
 				<span>
-					{timeAgo < 24
-						? `${timeAgo}h ago  `
-						: `${Math.ceil(
-								diffTime / (1000 * 60 * 60 * 24)
-						  )}d ago  `}
-					• {type}
+					{`${getJobDate(created_at)}d ago  `}• {type}
 				</span>
 				<TitleStyled to={{ pathname: `/job/${id}` }}>
 					{title}

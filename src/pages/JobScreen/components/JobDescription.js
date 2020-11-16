@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
+import { getJobDate } from '../../../helpers/getJobDate';
+
+const ArticleHeader = styled.div`
+	margin-bottom: 40px;
+`;
 
 const ArticleStyled = styled.article`
-	background: #fff;
+	background: ${({ theme }) => theme.jobCard};
 	margin-top: 20px;
 	border-radius: 5px;
 	padding: 30px 50px;
@@ -20,7 +25,16 @@ export const JobDescription = ({
 	return (
 		<>
 			{description && (
-				<ArticleStyled>{parse(description)}</ArticleStyled>
+				<ArticleStyled>
+					<ArticleHeader>
+						<span>
+							{`${getJobDate(created_at)}d ago  `}• {type}
+						</span>
+						<h1>{title}</h1>
+						<span>{jobLocation}</span>
+					</ArticleHeader>
+					{parse(description)}
+				</ArticleStyled>
 			)}
 		</>
 	);

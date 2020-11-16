@@ -3,7 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
     body{
         font-family:'Poppins', 'Raleway', 'Arial';
-        background: #edf2f4;
+        background: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.text};
+        header {
+            color:${({ theme }) => theme.textHeader};
+        }
     }
 
 `;

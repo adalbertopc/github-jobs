@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { useDataApi } from '../../hooks/useDataApi';
 import { JobCompanyInfo } from './components/JobCompanyInfo';
 import { JobDescription } from './components/JobDescription';
@@ -9,7 +8,7 @@ import { JobHowToApply } from './components/JobHowToApply';
 export const JobScreen = () => {
 	const params = useParams();
 	const [jobData, setJobData] = useState({});
-	const { data, isLoading } = useDataApi(
+	const { data } = useDataApi(
 		`https://api.allorigins.win/raw?url=${encodeURIComponent(
 			`https://jobs.github.com/positions/${params.id}.json`
 		)}`
@@ -25,11 +24,9 @@ export const JobScreen = () => {
 		created_at,
 		description,
 		how_to_apply,
-		id,
 		location: jobLocation,
 		title,
 		type,
-		url,
 	} = jobData;
 	console.log(jobData);
 	return (
